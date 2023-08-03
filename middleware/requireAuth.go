@@ -2,9 +2,10 @@ package middleware
 
 import (
 	"fmt"
-	"go-jwt/dto"
-	"go-jwt/initializers"
-	"go-jwt/models"
+	"go-authorization-jwt/dto"
+	"go-authorization-jwt/initializers"
+	"go-authorization-jwt/models"
+
 	"net/http"
 	"os"
 	"time"

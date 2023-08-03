@@ -1,8 +1,8 @@
 package controllers
 
 import (
-	"go-jwt/initializers"
-	"go-jwt/models"
+	"go-authorization-jwt/initializers"
+	"go-authorization-jwt/models"
 	"net/http"
 	"os"
 	"time"

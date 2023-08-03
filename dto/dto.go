@@ -1,7 +1,7 @@
 package dto
 
 import (
-	"go-jwt/models"
+	"go-authorization-jwt/models"
 	"time"
 )
 

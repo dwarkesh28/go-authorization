@@ -1,4 +1,4 @@
-module go-jwt
+module go-authorization-jwt
 
 go 1.20
 
