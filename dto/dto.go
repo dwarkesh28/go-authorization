@@ -1,8 +1,9 @@
 package dto
 
 import (
-	"go-authorization-jwt/models"
 	"time"
+
+	"github.com/dwarkesh28/g0-authorization-jwt/models"
 )
 
 type GetData struct {
