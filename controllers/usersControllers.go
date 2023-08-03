@@ -3,7 +3,6 @@ package controllers
 import (
 	"go-jwt/initializers"
 	"go-jwt/models"
-	"log"
 	"net/http"
 	"os"
 	"time"
@@ -71,10 +70,8 @@ func Login(c *gin.Context) {
 
 	// Lookup requested user
 	var user models.User
-	log.Print("email", body.Email)
 	// initializers.DB.First(&user, "email = ?", body.Email)
 	initializers.DB.Table("users").Select("id", "email", "password").Where("email = ?", body.Email).Scan(&user)
-	log.Print("user", user)
 
 	if user.ID == 0 {
 		c.JSON(http.StatusBadRequest, gin.H{
@@ -91,7 +88,6 @@ func Login(c *gin.Context) {
 		return
 	}
 
-	log.Print("Id :", user.ID)
 	// Generate jwt token
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
 		"sub": user.ID,
@@ -100,7 +96,6 @@ func Login(c *gin.Context) {
 	// Sign and get the complete encoded token as a string using the secret
 	tokenString, err := token.SignedString([]byte(os.Getenv("SECRET")))
 
-	log.Print("token string :", tokenString)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"error": "Failed to create token",
@@ -112,6 +107,7 @@ func Login(c *gin.Context) {
 	c.SetCookie("Authorization", tokenString, 3600*24*30, "", "", false, true)
 	c.JSON(http.StatusOK, gin.H{})
 }
+
 func Validate(c *gin.Context) {
 	user, _ := c.Get("user")
 
